@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/e884217c0fb54d43b36bec18bd3949fc/artifacts
+end_time: 1702809270452
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e884217c0fb54d43b36bec18bd3949fc
+run_name: loud-pug-422
+run_uuid: e884217c0fb54d43b36bec18bd3949fc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1702809248059
+status: 4
+tags: []
+user_id: Daniel

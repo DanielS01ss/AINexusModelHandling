@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/7ade7c9a3ec84f6887c41a26a0cd270d/artifacts
+end_time: 1702901104527
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7ade7c9a3ec84f6887c41a26a0cd270d
+run_name: casual-squirrel-798
+run_uuid: 7ade7c9a3ec84f6887c41a26a0cd270d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1702901104496
+status: 4
+tags: []
+user_id: Daniel

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/baad7ff66e8d4677b7120773acd00d9f/artifacts
+end_time: 1701587730780
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: baad7ff66e8d4677b7120773acd00d9f
+run_name: trusting-grub-701
+run_uuid: baad7ff66e8d4677b7120773acd00d9f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1701587723860
+status: 3
+tags: []
+user_id: Daniel
