@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/615dcad8cf5e41ba89cb90be60c8a4bc/artifacts
+end_time: 1709840482522
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 615dcad8cf5e41ba89cb90be60c8a4bc
+run_name: mysterious-gull-118
+run_uuid: 615dcad8cf5e41ba89cb90be60c8a4bc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1709840476429
+status: 4
+tags: []
+user_id: Daniel

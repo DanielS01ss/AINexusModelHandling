@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/4e8f4e56cadc41ed8c7fa7bc3dc27c54/artifacts
+end_time: 1710523217520
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4e8f4e56cadc41ed8c7fa7bc3dc27c54
+run_name: chill-frog-637
+run_uuid: 4e8f4e56cadc41ed8c7fa7bc3dc27c54
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710523185606
+status: 3
+tags: []
+user_id: Daniel
