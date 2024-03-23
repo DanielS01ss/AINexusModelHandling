@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/fba25788fd764be2b98186ee9d2dc392/artifacts
+end_time: 1711043337736
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fba25788fd764be2b98186ee9d2dc392
+run_name: bald-bird-861
+run_uuid: fba25788fd764be2b98186ee9d2dc392
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711043332903
+status: 3
+tags: []
+user_id: Daniel

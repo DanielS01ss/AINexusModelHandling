@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/bf3b2f22d9bd4bf08ce091456c8487b8/artifacts
+end_time: 1711050457255
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: bf3b2f22d9bd4bf08ce091456c8487b8
+run_name: fun-gull-54
+run_uuid: bf3b2f22d9bd4bf08ce091456c8487b8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711050430772
+status: 3
+tags: []
+user_id: Daniel

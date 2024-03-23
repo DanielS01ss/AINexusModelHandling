@@ -109,3 +109,4 @@ def train_and_store_SVM(dataset, ml_params,email):
                 save_model_for_users(email, model_pkl_path)
             if os.path.exists(metadata_file_path):
                 os.remove(metadata_file_path)
+        return model_pkl_path

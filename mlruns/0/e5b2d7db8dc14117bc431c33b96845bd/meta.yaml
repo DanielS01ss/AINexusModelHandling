@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/e5b2d7db8dc14117bc431c33b96845bd/artifacts
+end_time: 1711030078692
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e5b2d7db8dc14117bc431c33b96845bd
+run_name: classy-grouse-83
+run_uuid: e5b2d7db8dc14117bc431c33b96845bd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711030068610
+status: 3
+tags: []
+user_id: Daniel

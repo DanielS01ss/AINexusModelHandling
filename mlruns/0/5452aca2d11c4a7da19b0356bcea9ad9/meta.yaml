@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/5452aca2d11c4a7da19b0356bcea9ad9/artifacts
+end_time: 1710603927174
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 5452aca2d11c4a7da19b0356bcea9ad9
+run_name: nimble-rat-50
+run_uuid: 5452aca2d11c4a7da19b0356bcea9ad9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710603910683
+status: 3
+tags: []
+user_id: Daniel

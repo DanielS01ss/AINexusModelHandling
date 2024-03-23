@@ -2,6 +2,7 @@ import os
 import uuid
 import mlflow
 import mlflow.sklearn
+import shap
 from minio import Minio, S3Error
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
@@ -33,23 +34,28 @@ def train_and_store_random_forest(dataset, ml_params,email):
         start_time = time.time()
         model.fit(X_train, y_train)
         end_time = time.time()
-
         explainer = shap.TreeExplainer(model)
 
         # Compute SHAP Values for your test set
         shap_values = explainer.shap_values(X_test)
 
-        # Save the SHAP values to a file (e.g., CSV)
-        pd.DataFrame(shap_values).to_csv(f"{uuid_for_model}_shap_values.csv", index=False)
+        plt.figure()
+        shap.summary_plot(shap_values, X_test)  # SHAP plot function does not use a `title` argument
+        plt.title("SHAP Feature Importance")  # Add title with Matplotlib
+    
+        # Optionally, if you want to save the figure to a file
+        plt.savefig(f"{uuid_for_model}_shap_summary_plot.png")
 
 
-        shap.summary_plot(shap_values, X_test, show=False)
-        plt.savefig(f"{uuid_for_model}_summary_plot.png")
+        shap_values_single = explainer.shap_values(X_test.iloc[0])
 
-        # Assume we're explaining the first prediction in X_test
-        shap.force_plot(explainer.expected_value, shap_values[0], X_test.iloc[0], show=False, matplotlib=True)
-        plt.savefig(f"{uuid_for_model}_force_plot.png")
-        plt.close()
+        # Generate force plot for the first instance and the class of interest
+        # Adjust the index [1] if you have a multi-class scenario and are interested in a different class
+        force_plot = shap.force_plot(explainer.expected_value[1], shap_values_single[1], X_test.iloc[0])
+
+        # Display the force plot
+        shap.save_html(f"{uuid_for_model}_force_plot.html", force_plot)  # Save the plot to an HTML file
+
 
         duration = end_time - start_time
         # Log the duration to MLflow
@@ -66,7 +72,54 @@ def train_and_store_random_forest(dataset, ml_params,email):
         f1 = f1_score(y_test, y_pred)
         roc_auc = roc_auc_score(y_test, model.predict_proba(X_test)[:, 1])
 
-        # Log the model and metrics with MLflow
+        #here we save the data for our model like the png file and the html file
+
+        file_path = f"{uuid_for_model}_shap_summary_plot.png"  # Path to your local file
+        bucket_name = 'model-shap-values'     # Your MinIO bucket
+        object_name = f"{uuid_for_model}_shap_summary_plot.png"  # Object name in MinIO
+
+        minio_client = Minio(
+            "127.0.0.1:9000",
+            access_key="LjYOcfvfYyfYPg0ea3D3",
+            secret_key="QKd4F1cgxMTLAh2MFtHYTWePbrurXNeMlf13h06D",
+            secure=False  # Set to True if using HTTPS
+        )
+
+        # Upload the file
+        try:
+            with open(file_path, "rb") as file_data:
+                file_stat = os.stat(file_path)
+                minio_client.put_object(
+                    bucket_name,
+                    object_name,
+                    file_data,
+                    file_stat.st_size,
+                    content_type='image/png'
+                )
+            print(f"'{file_path}' is successfully uploaded as '{object_name}' to the bucket '{bucket_name}'.")
+        except S3Error as exc:
+            print("Error occurred:", exc)
+        
+
+        file_path = f"{uuid_for_model}_force_plot.html"  # Path to your local file
+        bucket_name = 'model-shap-values'     # Your MinIO bucket
+        object_name = f"{uuid_for_model}_force_plot.html"  # Object name in MinIO
+        
+
+        try:
+            with open(file_path, "rb") as file_data:
+                file_stat = os.stat(file_path)
+                minio_client.put_object(
+                    bucket_name,
+                    object_name,
+                    file_data,
+                    file_stat.st_size,
+                    content_type='text/html'
+                )
+            print(f"'{file_path}' is successfully uploaded as '{object_name}' to the bucket '{bucket_name}'.")
+        except S3Error as exc:
+            print("Error occurred:", exc)
+        
         mlflow.sklearn.log_model(model, "random_forest_model")
         mlflow.log_metric("accuracy", accuracy)
         mlflow.log_param("n_estimators", 100)
@@ -93,12 +146,7 @@ def train_and_store_random_forest(dataset, ml_params,email):
         with open(model_pkl_path, "wb") as model_file:
             pickle.dump(model, model_file)
 
-        minio_client = Minio(
-            "127.0.0.1:9000",
-            access_key="LjYOcfvfYyfYPg0ea3D3",
-            secret_key="QKd4F1cgxMTLAh2MFtHYTWePbrurXNeMlf13h06D",
-            secure=False  # Set to True if using HTTPS
-        )
+        
         was_saved_successfully = True
         try:
             minio_client = Minio(
@@ -132,4 +180,6 @@ def train_and_store_random_forest(dataset, ml_params,email):
                 save_model_for_users(email, model_pkl_path)
             if os.path.exists(metadata_file_path):
                 os.remove(metadata_file_path)
+        
+        return model_pkl_path
 

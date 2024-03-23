@@ -1,0 +1,14 @@
+Acest microserviciu foloseste shap si pentru a-l face sa mearga mi-am batut putin capul iar pentru a-l rula va trebuie sa rulezi cu python si tot ce instalezi cu pip
+sa instalezi avand in vedere locatia lor din venv mai concret
+
+
+
+	
+ >>>>>>>>>>>>> PIP <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+	.\venv\Scripts\pip install <ce vrei tu sa instalezi>
+
+
+ >>>>>>>>>>>>  PYTHON ( AKA RULARE )  <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+ 	.\venv\Scripts\python main.py 

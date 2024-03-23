@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/37b53bc022f84619a61822c5ba2d2bba/artifacts
+end_time: 1711030259256
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 37b53bc022f84619a61822c5ba2d2bba
+run_name: silent-penguin-213
+run_uuid: 37b53bc022f84619a61822c5ba2d2bba
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711030251721
+status: 3
+tags: []
+user_id: Daniel

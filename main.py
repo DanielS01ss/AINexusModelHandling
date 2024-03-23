@@ -4,9 +4,10 @@ from model_train_algorithms.RandomForest import train_and_store_random_forest
 from model_train_algorithms.SVM import train_and_store_SVM
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from utils.fetch_shap_data import fetch_shap_force_plot
 from utils.fetch_user_models import fetch_user_models
 from utils.fetch_model_details import fetch_model_details
-import sys
+from utils.fetch_shap_data import fetch_shap_summary_plot
 import uvicorn
 import json
 import jwt
@@ -42,11 +43,15 @@ async def root(   data: Any = Body(...),
     if len(data) == 0:
         raise HTTPException(status_code=400, detail="Invalid parameters. Please provide valid values.")
     if model_name == "Random Forest":
-        train_and_store_random_forest(data, model_params,email)
+        resp = train_and_store_random_forest(data, model_params,email)
     elif model_name == "SVM":
-        train_and_store_SVM(data, model_params,email)
+        resp = train_and_store_SVM(data, model_params,email)
 
-    return JSONResponse(content={"message": "Request processed successfully"}, status_code=200)
+    resp = json.dumps({
+        "model_name": str(resp)
+    })
+    
+    return JSONResponse(content={"message": resp}, status_code=200)
 
 @app.get("/api/models")
 async def get_models_for_user(email: str = Query(..., description="The email address of the user to retrieve.")):
@@ -57,7 +62,29 @@ async def get_models_for_user(email: str = Query(..., description="The email add
     else:
         return JSONResponse(content={"message": "There was a problem processing request"}, status_code=400)
 
-@app.get("/python-info")
-def python_info():
-    return {"Python Executable": sys.executable, "Python Version": sys.version}
+
+@app.get("/api/force_plot")
+async def get_shap_force_plot(model_name: str = Query(..., description="The email address of the user to retrieve.")):
+    
+    if len(model_name) != 0:
+        res =  fetch_shap_force_plot(model_name)
+        return JSONResponse(content={"data":res}, status_code=200)
+    else:
+        return JSONResponse(content={"message": "There was a problem processing request"}, status_code=400)
+
+@app.get("/api/summary_plot")
+async def get_shap_summary_plot(model_name: str = Query(..., description="The email address of the user to retrieve.")):
+    
+    
+    if len(model_name) != 0:
+        res =  fetch_shap_summary_plot(model_name)
+        return JSONResponse(content={"data": res}, status_code=200)
+        
+    else:
+        return JSONResponse(content={"message": "There was a problem processing request"}, status_code=400)
+
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8086, log_level="info")
 

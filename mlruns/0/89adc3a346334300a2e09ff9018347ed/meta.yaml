@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/89adc3a346334300a2e09ff9018347ed/artifacts
+end_time: 1711048360549
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 89adc3a346334300a2e09ff9018347ed
+run_name: placid-stag-451
+run_uuid: 89adc3a346334300a2e09ff9018347ed
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711048352335
+status: 3
+tags: []
+user_id: Daniel
