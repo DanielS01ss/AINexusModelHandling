@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/d0efd915b21c4c48a12c7366127810da/artifacts
+end_time: 1711705717777
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d0efd915b21c4c48a12c7366127810da
+run_name: clean-moose-648
+run_uuid: d0efd915b21c4c48a12c7366127810da
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711705705984
+status: 3
+tags: []
+user_id: Daniel

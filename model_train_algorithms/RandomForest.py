@@ -9,6 +9,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score,  precision_score, recall_score, f1_score, roc_auc_score
 from utils.save_model_for_user  import save_model_for_users
+import matplotlib
+matplotlib.use('Agg')  # Use the 'Agg' backend
 import matplotlib.pyplot as plt
 import mlflow
 import pandas as pd
@@ -38,25 +40,26 @@ def train_and_store_random_forest(dataset, ml_params,email):
 
         # Compute SHAP Values for your test set
         shap_values = explainer.shap_values(X_test)
-
         plt.figure()
         shap.summary_plot(shap_values, X_test)  # SHAP plot function does not use a `title` argument
         plt.title("SHAP Feature Importance")  # Add title with Matplotlib
-    
+        fig = plt.gcf()
         # Optionally, if you want to save the figure to a file
-        plt.savefig(f"{uuid_for_model}_shap_summary_plot.png")
-
+        fig.savefig(f"{uuid_for_model}_shap_summary_plot.png")
 
         shap_values_single = explainer.shap_values(X_test.iloc[0])
 
-        # Generate force plot for the first instance and the class of interest
+
+
+        # Generate force plot for the first in stance and the class of interest
         # Adjust the index [1] if you have a multi-class scenario and are interested in a different class
         force_plot = shap.force_plot(explainer.expected_value[1], shap_values_single[1], X_test.iloc[0])
 
         # Display the force plot
-        shap.save_html(f"{uuid_for_model}_force_plot.html", force_plot)  # Save the plot to an HTML file
+        shap.save_html(f"{uuid_for_model}_force_plot.html", force_plot)  # Save the plot to an HTML file    
+        
 
-
+        
         duration = end_time - start_time
         # Log the duration to MLflow
         mlflow.log_metric("training_duration_seconds", duration)

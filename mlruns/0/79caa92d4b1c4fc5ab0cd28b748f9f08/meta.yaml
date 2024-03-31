@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/79caa92d4b1c4fc5ab0cd28b748f9f08/artifacts
+end_time: 1711811753577
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 79caa92d4b1c4fc5ab0cd28b748f9f08
+run_name: efficient-chimp-472
+run_uuid: 79caa92d4b1c4fc5ab0cd28b748f9f08
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711811753274
+status: 4
+tags: []
+user_id: Daniel

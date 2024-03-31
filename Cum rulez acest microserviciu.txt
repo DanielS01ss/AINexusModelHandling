@@ -12,3 +12,6 @@ sa instalezi avand in vedere locatia lor din venv mai concret
  >>>>>>>>>>>>  PYTHON ( AKA RULARE )  <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
  	.\venv\Scripts\python main.py 
+
+
+	.\venv\Scripts\pip install boto3

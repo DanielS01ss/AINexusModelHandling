@@ -8,8 +8,12 @@ from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score,  precision_score, recall_score, f1_score, roc_auc_score
 from utils.save_model_for_user  import save_model_for_users
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')  # Use the 'Agg' backend
+import matplotlib.pyplot as plt
 import time
 import pickle
+import shap
 import json
 
 
@@ -26,7 +30,7 @@ def train_and_store_SVM(dataset, ml_params,email):
 
     # Train an SVM model
     with mlflow.start_run():
-        model = SVC(kernel='linear', C=1)  # Example SVM model with linear kernel
+        model = SVC(kernel='linear', C=1, probability=True)  # Example SVM model with linear kernel
         start_time = time.time()
         model.fit(X_train, y_train)
         end_time = time.time()
@@ -62,6 +66,70 @@ def train_and_store_SVM(dataset, ml_params,email):
         model_pkl_path = "{}_svm_model.pkl".format(uuid_for_model)
 
         metadata_file_path = "{}_metadata.json".format(uuid_for_model)
+        # sample_size = min(len(X_train), 100)  # Adjust the sample size if X_train has fewer than 100 rows
+        # shap_explainer_background = X_train.sample(sample_size)
+        # explainer = shap.KernelExplainer(model.predict_proba, shap_explainer_background)
+        # shap_values = explainer.shap_values(X_test.sample(100))
+        # # Generate a force plot for the first instance in the test set
+        # sample_size_test = min(len(X_test), 100)  # Adjust the sample size if X_test has fewer than 100 rows
+        # shap_values = explainer.shap_values(X_test.sample(sample_size_test))
+        # force_plot = shap.force_plot(explainer.expected_value[1], shap_values[1][0], X_test.sample(sample_size_test).iloc[0])
+
+        # # Save the force plot
+        # shap.save_html('force_plot.html', force_plot)
+
+        # # Generate and save the summary plot
+        # shap.summary_plot(shap_values, X_test.sample(sample_size_test))
+        # plt.savefig('summary_plot.png')
+        # plt.close()
+
+
+        # file_path = f"{uuid_for_model}_shap_summary_plot.png"  # Path to your local file
+        # bucket_name = 'model-shap-values'     # Your MinIO bucket
+        # object_name = f"{uuid_for_model}_shap_summary_plot.png"  # Object name in MinIO
+
+        # minio_client = Minio(
+        #     "127.0.0.1:9000",
+        #     access_key="LjYOcfvfYyfYPg0ea3D3",
+        #     secret_key="QKd4F1cgxMTLAh2MFtHYTWePbrurXNeMlf13h06D",
+        #     secure=False  # Set to True if using HTTPS
+        # )
+
+        # # Upload the file
+        # try:
+        #     with open(file_path, "rb") as file_data:
+        #         file_stat = os.stat(file_path)
+        #         minio_client.put_object(
+        #             bucket_name,
+        #             object_name,
+        #             file_data,
+        #             file_stat.st_size,
+        #             content_type='image/png'
+        #         )
+        #     print(f"'{file_path}' is successfully uploaded as '{object_name}' to the bucket '{bucket_name}'.")
+        # except S3Error as exc:
+        #     print("Error occurred:", exc)
+        
+
+        # file_path = f"{uuid_for_model}_force_plot.html"  # Path to your local file
+        # bucket_name = 'model-shap-values'     # Your MinIO bucket
+        # object_name = f"{uuid_for_model}_force_plot.html"  # Object name in MinIO
+        
+
+        # try:
+        #     with open(file_path, "rb") as file_data:
+        #         file_stat = os.stat(file_path)
+        #         minio_client.put_object(
+        #             bucket_name,
+        #             object_name,
+        #             file_data,
+        #             file_stat.st_size,
+        #             content_type='text/html'
+        #         )
+        #     print(f"'{file_path}' is successfully uploaded as '{object_name}' to the bucket '{bucket_name}'.")
+        # except S3Error as exc:
+        #     print("Error occurred:", exc)
+
 
         with open(metadata_file_path, "w") as metadata_file:
             json.dump(metadata, metadata_file)
