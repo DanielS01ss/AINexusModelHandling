@@ -9,6 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score,  precision_score, recall_score, f1_score, roc_auc_score
 from utils.save_model_for_user  import save_model_for_users
+from datetime import datetime
 import matplotlib
 matplotlib.use('Agg')  # Use the 'Agg' backend
 import matplotlib.pyplot as plt
@@ -24,11 +25,18 @@ def train_and_store_random_forest(dataset, ml_params,email):
     dataset = json.loads(dataset)
     df = pd.DataFrame()
     df = pd.json_normalize(dataset)
+
     target_var = ml_params["target"]
     X_data = df.drop(columns=[target_var])  # Use drop(columns=...) to remove the target column
     y_data = df[target_var]
-
     X_train, X_test, y_train, y_test = train_test_split(X_data, y_data, test_size=0.2, random_state=42)
+
+    column_names_array = X_data.columns.to_numpy()
+    # or as a list
+    column_names_list = X_data.columns.tolist()
+    now = datetime.now()
+    # Format the date and time as a string in the desired format
+    formatted_now = now.strftime("%d/%m/%Y %H:%M")
 
     # Train a RandomForest model
     with mlflow.start_run():
@@ -134,7 +142,9 @@ def train_and_store_random_forest(dataset, ml_params,email):
 
         metadata = {
         "parameters": {"n_estimators": 100, "random_state": 42},
-        "metrics": {"accuracy": accuracy, "precision": precision, "recall": recall, "f1": f1, "roc_auc": roc_auc}
+        "metrics": {"accuracy": accuracy, "precision": precision, "recall": recall, "f1": f1, "roc_auc": roc_auc},
+        "columns_used":column_names_list,
+        "date": formatted_now
         }
         
         model_pkl_path = "{}_random_forest_model.pkl".format(uuid_for_model)

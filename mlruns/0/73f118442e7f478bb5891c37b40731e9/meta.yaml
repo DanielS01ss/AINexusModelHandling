@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/73f118442e7f478bb5891c37b40731e9/artifacts
+end_time: 1712500578700
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 73f118442e7f478bb5891c37b40731e9
+run_name: languid-hawk-830
+run_uuid: 73f118442e7f478bb5891c37b40731e9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1712500578600
+status: 4
+tags: []
+user_id: Daniel

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/Desktop/PROIECT_DIPLOMA/Full-app/BE/Model_Handling/mlruns/0/1269310c095f43d7967da427cb56aadc/artifacts
+end_time: 1711894610044
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1269310c095f43d7967da427cb56aadc
+run_name: resilient-mink-147
+run_uuid: 1269310c095f43d7967da427cb56aadc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711894606220
+status: 3
+tags: []
+user_id: Daniel

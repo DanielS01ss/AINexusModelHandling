@@ -61,6 +61,7 @@ async def root(   data: Any = Body(...),
     email: Any = Body(...)
     ):
 
+    print(data)
     if len(data) == 0:
         raise HTTPException(status_code=400, detail="Invalid parameters. Please provide valid values.")
     if model_name == "Random Forest":
